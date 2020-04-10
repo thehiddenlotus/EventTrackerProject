@@ -9,7 +9,7 @@
     </provider>
     
     <!-- entities -->
-    <class>com.skilldistillery.grateful.entities.Great</class>
+    <class>com.skilldistillery.grateful.entities.Entry</class>
 
     
 	<!-- end entities -->

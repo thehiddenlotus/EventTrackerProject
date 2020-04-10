@@ -6,45 +6,45 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Great {
+public class Entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
-
-	public Great() {
+	
+	public Entry() {
 		super();
 	}
-
-	public Great(int id, String name) {
+	
+	public Entry(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Great [id=" + id + ", name=" + name + "]";
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,7 +52,7 @@ public class Great {
 		result = prime * result + id;
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,7 +61,7 @@ public class Great {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Great other = (Great) obj;
+		Entry other = (Entry) obj;
 		if (id != other.id)
 			return false;
 		return true;

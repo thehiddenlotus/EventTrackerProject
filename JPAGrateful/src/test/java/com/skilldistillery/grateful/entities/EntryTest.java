@@ -17,7 +17,7 @@ class EntryTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Entry great;
+	private Entry entry;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +32,23 @@ class EntryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		great = em.find(Entry.class, 1);
+		entry = em.find(Entry.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		great = null;
+		entry = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(great);
-		assertEquals("First", great.getName());
+		assertNotNull(entry);
+		assertEquals("First", entry.getTitle());
+		assertEquals(10, entry.getMood());
+		assertEquals("first entry and im feeling good", entry.getNote());
+		assertEquals("i am grateful for my health and capable body", entry.getGratitude());
+		assertEquals(2020, entry.getDate().getYear());		
 	}
 
 }

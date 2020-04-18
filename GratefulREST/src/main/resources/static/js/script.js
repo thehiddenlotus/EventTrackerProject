@@ -64,19 +64,18 @@ function displayEntry(entry) {
 		edit.textContent = 'Edit Entry';
 		remove.textContent = 'Remove Entry';
 		
+		let id = entry.id;
+		console.log(id);
+
 		edit.addEventListener('click', function(e){
 			e.preventDefault();
-			let id = entry.id;
-			console.log(id);
 			if (!isNaN(id) && id > 0) {
-				editEntry(id);
+				editEntry(entry);
 			}
 		});
 		
 		remove.addEventListener('click', function(e){
 			e.preventDefault();
-			let id = entry.id;
-			console.log(id);
 			if (!isNaN(id) && id > 0) {
 				removeEntry(id);
 			}
@@ -112,6 +111,7 @@ function createEntry(formObj){
 	  }
 	};
 	var entryObject = {
+			  id: formObj.id.value,
 			  title: formObj.title.value,
 			  date: formObj.date.value,
 			  mood: formObj.mood.value,
@@ -145,31 +145,12 @@ function removeEntry(entryId){
 }
 
 // JUST A TEMPLATE STILL NEEDS DONE !!!
-function editEntry(formObj){
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'api/entries');
-	xhr.setRequestHeader("Content-type", "application/json"); 
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState === 4 ) {
-	    if ( xhr.status == 200 || xhr.status == 201 ) { 
-	      var data = JSON.parse(xhr.responseText);
-	      console.log(data);
-		  displayEntry(data);
-		  document.entryForm.reset();
-	    }
-	    else {
-	      console.log("POST request failed.");
-	      console.error(xhr.status + ': ' + xhr.responseText);
-	    }
-	  }
-	};
-	var entryObject = {
-			  title: formObj.title.value,
-			  date: formObj.date.value,
-			  mood: formObj.mood.value,
-			  gratitude: formObj.gratitude.value,
-			  note: formObj.note.value  
-			};
-	var entryObjectJson = JSON.stringify(entryObject); 
-	xhr.send(entryObjectJson);
+function editEntry(entry){
+	let form = document.entryForm;
+	form.id.value = entry.id;
+	form.title.value = entry.title;
+	form.date.value = entry.date;
+	form.mood.value = entry.mood;
+	form.gratitude.value = entry.gratitude;
+	form.note.value = entry.note;
 }

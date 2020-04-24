@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,7 @@ import com.skilldistillery.grateful.services.EntryService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin({"*", "http://localhost:4202/"})
 public class EntryController {
 	
 	@Autowired
@@ -36,9 +39,25 @@ public class EntryController {
 	}
 	
 	@PostMapping("entries")
-	public Entry save(@RequestBody Entry entry, HttpServletRequest req, HttpServletResponse resp){
+	public Entry add(@RequestBody Entry entry, HttpServletRequest req, HttpServletResponse resp){
 		try {
-			entry = svc.save(entry);
+			entry = svc.add(entry);
+			resp.setStatus(201);
+			StringBuffer reqURL = req.getRequestURL();
+			reqURL.append("/").append(entry.getId());
+			resp.setHeader("Location", reqURL.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+			entry = null;
+		}
+		return entry;
+	}
+
+	@PutMapping("entries/{id}")
+	public Entry save(@PathVariable("id") int id, @RequestBody Entry entry, HttpServletRequest req, HttpServletResponse resp){
+		try {
+			entry = svc.save(id, entry);
 			resp.setStatus(201);
 			StringBuffer reqURL = req.getRequestURL();
 			reqURL.append("/").append(entry.getId());

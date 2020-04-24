@@ -12,7 +12,8 @@ public interface EntryService {
 	public List<Entry> findByDate(LocalDate date);
 	public List<Entry> findByMood(int id);
 	public List<Entry> findByKeyword(String keyword);
-	public Entry save(Entry entry);
+	public Entry add(Entry entry);
+	public Entry save(int id, Entry entry);
 	public boolean remove(int id);
 	
 }

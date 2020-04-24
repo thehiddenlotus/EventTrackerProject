@@ -127,6 +127,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `gratefuldb`;
 INSERT INTO `entry` (`id`, `title`, `date`, `mood`, `gratitude`, `note`) VALUES (1, 'First', '2020-10-10', 10, 'i am grateful for my health and capable body', 'first entry and im feeling good');
+INSERT INTO `entry` (`id`, `title`, `date`, `mood`, `gratitude`, `note`) VALUES (2, 'Second', '2020-02-14', 1, 'i am grateful for my family', 'second note');
+INSERT INTO `entry` (`id`, `title`, `date`, `mood`, `gratitude`, `note`) VALUES (3, 'Third', '2020-04-01', 5, 'i am grateful for all the experiences i have had', 'third');
 
 COMMIT;
 

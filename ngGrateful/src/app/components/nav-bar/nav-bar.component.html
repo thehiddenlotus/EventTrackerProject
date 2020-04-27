@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark w3-teal">
-  <a class="navbar-brand" [routerLink]="['/home']">Home</a>
+  <a class="navbar-brand" [routerLink]="['/home']"><img src="https://www.coolgenerator.com/Data/Textdesign/202004/97558ab7878f54f7d4a12ef46ba08f82.png" alt="Home"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse"
           data-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
@@ -9,9 +9,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
     <div class="navbar-nav">
+      <a class="nav-item nav-link" [routerLink]="['/entries']">
+        <i class="fa fa-book fa-fw w3-margin-right "></i>Journal</a>
       <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
       <a class="nav-item nav-link" [routerLink]="['/info']">Feeling Bad?</a>
-      <a class="nav-item nav-link" [routerLink]="['/entries']">Gratitude Journal</a>
       <!-- <a *ngIf="! loggedIn()" class="nav-item nav-link" [routerLink]="['/register']">Register</a>
         <span *ngIf="! loggedIn()">
         <app-login></app-login>

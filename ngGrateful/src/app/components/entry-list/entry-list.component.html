@@ -1,3 +1,4 @@
+<br>
 <h1>{{title}}
   <span [ngClass]="getEntryCount() >= 10 ?
     'badge badge-danger':getEntryCount() >= 5 ?
@@ -6,7 +7,6 @@
 
   </span>
 </h1>
-<br>
 <!-- Show Complete: <input type="checkbox" [(ngModel)]="showComplete"> -->
 <br>
 <div *ngIf="selected && ! editEntry">
@@ -56,11 +56,24 @@
       </tr>
     </tbody>
   </table>
+
+</div>
+
+<div *ngIf="!newEntry" >
+  <button mat-raised-button (click)="showForm()">New Entry</button>
+</div>
+
+<div *ngIf="newEntry">
   <form>
-    <input type="text" name="title" [(ngModel)]="newEntry.title">
-    <input type="number" name="title" [(ngModel)]="newEntry.mood">
-    <input type="text" name="gratitude" [(ngModel)]="newEntry.gratitude">
-    <input type="text" name="note" [(ngModel)]="newEntry.note">
+    <label for="title">Entry Title</label>
+    <input type="text" name="title" [(ngModel)]="newEntry.title"><br>
+    <label for="mood">How are you feeling today?</label>
+    <input type="range" id="mood" name="mood" min="1" max="10" [(ngModel)]="newEntry.mood"><br>
+    <label for="gratitude">What are you grateful for today?</label>
+    <input type="text" name="gratitude" [(ngModel)]="newEntry.gratitude"><br>
+    <label for="note">Here you can journal, jot notes, write a poem or just scribble down a thought. It is up to you!</label>
+    <input type="text" name="note" [(ngModel)]="newEntry.note"><br>
     <button (click)="addEntry(newEntry)">Add Entry</button>
+    <button (click)="cancelEntry()">Cancel</button>
   </form>
 </div>

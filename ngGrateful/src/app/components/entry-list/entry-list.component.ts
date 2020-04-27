@@ -1,3 +1,5 @@
+import { EntryFormComponent } from './../entry-form/entry-form.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EntryService } from './../../services/entry.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,13 +15,14 @@ export class EntryListComponent implements OnInit {
   title = 'Entries';
   entries: Entry[] = [];
   selected: Entry = null;
-  newEntry: Entry = new Entry();
+  newEntry: Entry = null;
   editEntry: Entry = null;
 
   constructor(
     private entryService: EntryService,
     private router: Router,
-    private currentRoute: ActivatedRoute
+    private currentRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,14 @@ export class EntryListComponent implements OnInit {
     else{
       this.reload();
     }
+  }
+
+  showForm(): void {
+    this.newEntry = new Entry();
+  }
+
+  cancelEntry(): void {
+    this.newEntry = null;
   }
 
   reload() {
@@ -72,7 +83,7 @@ export class EntryListComponent implements OnInit {
     this.entryService.create(entry).subscribe(
       data => {
         this.reload();
-        this.newEntry = new Entry();
+        this.newEntry = null;
       },
       bad => {
         console.error('Component.addtodo error');

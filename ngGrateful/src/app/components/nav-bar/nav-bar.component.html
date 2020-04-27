@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark w3-teal">
   <a class="navbar-brand" [routerLink]="['/home']">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse"
           data-target="#navbarNavAltMarkup"
@@ -10,8 +10,8 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
     <div class="navbar-nav">
       <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
-      <a class="nav-item nav-link" [routerLink]="['/contact']">Contact Us</a>
-      <a class="nav-item nav-link" [routerLink]="['/entries']">Entry List</a>
+      <a class="nav-item nav-link" [routerLink]="['/info']">Feeling Bad?</a>
+      <a class="nav-item nav-link" [routerLink]="['/entries']">Gratitude Journal</a>
       <!-- <a *ngIf="! loggedIn()" class="nav-item nav-link" [routerLink]="['/register']">Register</a>
         <span *ngIf="! loggedIn()">
         <app-login></app-login>
